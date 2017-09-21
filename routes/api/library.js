@@ -1,8 +1,6 @@
 const router = require('express').Router();
-
-const service = require('../../services/library.service');
 const MongoDB = require('../../db/index');
-
+const service = require('../../services/library.service');
 
 router
   .get('/', (req, res) => {
@@ -14,8 +12,7 @@ router
         .getAllBooks()
         .then(data => res.send(data))
         .catch(err => res.send(err));
-        //***
-        MongoDB.close();
+      MongoDB.close();
     });
   })
   .get('/recent', (req, res) => {})

@@ -3,12 +3,22 @@ const db = require('../db/index').instance();
 const bookCol = require('../utils/dbQuery.util')(db)('books');
 const notificationCol = require('../utils/dbQuery.util')(db)('notifications');
 
-module.exports = {
-  getAllBooks: () => bookCol.find({}).toArray(),
+const service = {
+  getAllBooks() {
+    return bookCol.find({}).toArray();
+  },
 
-  getFreeBooks: () => bookCol.find({ price: 0 }).toArray(),
+  getFreeBooks() {
+    return bookCol.find({ price: 0 }).toArray();
+  },
 
-  getMostPopular: () => bookCol.find({ rating: { $gte: 4.5 } }).toArray(),
+  getMostPopular() {
+    return bookCol.find({ rating: { $gte: 4.5 } }).toArray();
+  },
 
-  addBook: book => bookCol.insert(book)
+  addBook(book) {
+    return bookCol.insert(book);
+  }
 };
+
+module.exports = service;
