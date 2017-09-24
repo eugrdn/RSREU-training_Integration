@@ -1,39 +1,48 @@
 const router = require('express').Router();
-const MongoDB = require('../../db/index');
 const service = require('../../services/library.service');
+
+const handleDBrequest = (promise, res) =>
+  promise
+    .then(data => res.send(data))
+    .catch(err => res.send(err));
 
 router
   .get('/', (req, res) => {
-    /**
-     * need it?
-     */
-    MongoDB.connect().then(() => {
-      service
-        .getAllBooks()
-        .then(data => res.send(data))
-        .catch(err => res.send(err));
-      MongoDB.close();
-    });
+    handleDBrequest(
+      service.getAllBooks(),
+      res
+    );
   })
+  
   .get('/recent', (req, res) => {})
+  
   .get('/popular', (req, res) => {
-    service
-      .getMostPopular()
-      .then(data => res.send(data))
-      .catch(err => res.send(err));
+    handleDBrequest(
+      service.getMostPopular(),
+      res
+    );
   })
+
   .get('/free', (req, res) => {
-    service
-      .getFreeBooks()
-      .then(data => res.send(data))
-      .catch(err => res.send(err));
+    handleDBrequest(
+      service.getFreeBooks(),
+      res
+    );
   })
-  .get('/:bookId', (req, res) => {})
-  .post('/', ({ body: book }, res) => {
-    service
-      .addBook(book)
-      .then(data => res.send(data))
-      .catch(err => res.send(err));
+
+  .get('/:bookId', (req, res) => {
+    const id = req.params.bookId;
+    handleDBrequest(
+      service.getBook(id),
+      res
+    );
+  })
+
+  .post('/', ({body: book}, res) => {
+    handleDBrequest(
+      service.addBook(book),
+      res
+    );
   });
 
 module.exports = router;

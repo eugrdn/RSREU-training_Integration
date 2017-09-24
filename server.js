@@ -1,7 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const MongoDB = require('./db/index');
 const app = express();
 
 const routes = require('./routes/index');
