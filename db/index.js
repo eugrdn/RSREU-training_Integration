@@ -5,7 +5,7 @@ module.exports = {
   connect(url) {
     return MongoClient.connect(url)
       .then(db => (_db = db))
-      .catch(err => err);
+      .catch(err => Promise.reject(err));
   },
 
   getInstance() {

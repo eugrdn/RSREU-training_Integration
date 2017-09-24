@@ -1,5 +1,9 @@
 const ObjectID = require('mongodb').ObjectID;
-const bookCol = require('../db/index').getCollection('books');
+const db = require('../db/index').getInstance();
+
+const bookCol = db.collection('books');
+const filterCol = db.collection('filters');
+const historyCol = db.collection('history');
 
 // TODO
 const service = {
@@ -19,8 +23,16 @@ const service = {
     return bookCol.findOne(ObjectID(_id));
   },
 
-  addBook(book) {
+  createBook(book) {
     return bookCol.insertOne(book).then(res => res.ops[0], err => err);
+  },
+
+  getFilters() {
+    return filterCol.find({}).toArray();
+  },
+
+  getHistory() {
+    return historyCol.find({}).toArray();
   }
 };
 
