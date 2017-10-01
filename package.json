@@ -16,6 +16,11 @@
     "express": "^4.14.0",
     "library-ui": "git+https://github.com/ifedyukin/RSREU-training_UI.git",
     "mongodb": "^2.2.31",
-    "mustache": "^2.3.0"
+    "mustache": "^2.3.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.13"
   }
 }
