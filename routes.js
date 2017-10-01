@@ -11,8 +11,8 @@ var router = express.Router();
 // export our router
 module.exports = router;
 
-router.get('/', function(request, response) {
-    response.send('main path');
+router.get('/', (request, response) => {
+    response.render(path.resolve(__dirname, 'node_modules/library-ui/build'));
 });
 
 router.use('/api', api);
