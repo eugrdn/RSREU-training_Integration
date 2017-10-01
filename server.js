@@ -1,24 +1,11 @@
-const express = require('express');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const app = express();
+// require our dependencies
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+var port = process.env.PORT || 8080;
 
-const routes = require('./routes/index');
-const api = require('./routes/api/index');
-
-const PORT = process.env.PORT || 4200;
-
-/**
- * middleware
- */
-app.use(logger('dev'));
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+// body parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -29,12 +16,10 @@ app.use((req, res, next) => {
   next();
 });
 
-/**
- * routes
- */
-app.use('/', routes);
-app.use('/api', api);
+// route app
+var router = require('./routes');
+app.use('/', router);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, function() {
+  console.log('Server is running');
 });
