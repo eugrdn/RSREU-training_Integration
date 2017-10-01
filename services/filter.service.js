@@ -2,7 +2,10 @@ const filterCol = require('../db/index')
   .getCollection('filters');
 
 module.exports = {
-  getFilters() {
+  getAllFilters() {
     return filterCol.find({}).toArray();
+  },
+  getFilterById(id) {
+    return filterCol.findOne({id});
   }
 };

@@ -2,7 +2,10 @@ const categoryCol = require('../db/index')
   .getCollection('categories');
 
 module.exports = {
-  getCategories() {
+  getAllCategories() {
     return categoryCol.find({}).toArray();
+  },
+  getCategoryById(id) {
+    return categoryCol.findOne({id});
   }
 };
