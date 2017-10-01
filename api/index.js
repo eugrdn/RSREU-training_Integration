@@ -24,7 +24,12 @@ router
   })
   .get('/books/:id', (req, res) => {
     const id = req.params.id;
-
+    /*
+      params:
+      * activeCategory - id of category
+      * search - serach string
+      * activeFilter - id of filter
+    */
     bookService
       .getBookById(id)
       .then(data => res.send(data))
