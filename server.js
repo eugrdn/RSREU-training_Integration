@@ -1,25 +1,33 @@
 // require our dependencies
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var port = process.env.PORT || 8080;
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const MongoDB = require('./db');
+const port = process.env.PORT || 8080;
+const DB_URL = 'mongodb://localhost:27017/library';
 
-// body parser
-app.use(bodyParser.urlencoded({extended: true}));
+MongoDB.connect(DB_URL)
+  .then(() => {
+    console.log(`Connected to DB succsessfully!`);
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
+    // body parser
+    app.use(bodyParser.urlencoded({extended: true}));
 
-// route app
-var router = require('./routes');
-app.use('/', router);
+    app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+      );
+      next();
+    });
 
-app.listen(port, function() {
-  console.log('Server is running');
-});
+    // route app
+    const router = require('./routes');
+    app.use('/', router);
+
+    app.listen(port, () => {
+      console.log('Server is running');
+    });
+  })
+  .catch(err => console.log(`An error with connection to db ${err}!`));

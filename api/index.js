@@ -1,16 +1,34 @@
 const router = require('express').Router();
-const books = require('../models/book.json');
+const bookService = require('../services/book.service');
+const categoryService = require('../services/category.service');
+const filterService = require('../services/filter.service');
 
-router.get('/books', function(request, response) {
-  response.send(books.items);
-});
+router
+  .get('/categories', (req, res) => {
+    categoryService
+      .getCategories()
+      .then(data => res.send(data))
+      .catch(err => res.send(err));
+  })
+  .get('/filters', (req, res) => {
+    filterService
+      .getFilters()
+      .then(data => res.send(data))
+      .catch(err => res.send(err));
+  })
+  .get('/books', (req, res) => {
+    bookService
+      .getAllBooks()
+      .then(data => res.send(data))
+      .catch(err => res.send(err));
+  })
+  .get('/books/:id', (req, res) => {
+    const id = req.params.id;
 
-router.get('/books/:id', function(request, response) {
-  var id = request.params.id,
-    book = books.items.find(function(book) {
-      return book.id === id;
-    });
-  response.send(book);
-});
+    bookService
+      .getBookById(id)
+      .then(data => res.send(data))
+      .catch(err => res.send(err));
+  });
 
 module.exports = router;
