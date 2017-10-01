@@ -12,6 +12,10 @@ MongoDB.connect(DB_URL)
   .then(() => {
     console.log(`Connected to DB succsessfully!`);
 
+    app.engine('html', engines.mustache);
+    app.set('view engine', 'html');
+    app.use(express.static(path.resolve(__dirname, 'node_modules/library-ui/build')));
+
     // body parser
     app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,9 +31,7 @@ MongoDB.connect(DB_URL)
     // route app
     const router = require('./routes');
     app.use('/', router);
-    app.engine('html', engines.mustache);
-    app.set('view engine', 'html');
-    app.use(express.static(path.resolve(__dirname, 'node_modules/library-ui/build')));
+
     app.listen(port, () => {
       console.log(`Server is running: localhost:${port}`);
     });
