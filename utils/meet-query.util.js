@@ -15,19 +15,18 @@ function meetSearch(queryString) {
       : true;
 }
 
-// TODO with type
 function meetFilter(filter) {
   return book => {
     if (filter) {
-      switch (filter.title) {
-        case 'All Books':
+      switch (filter.type) {
+        case 'all':
           return true;
-        case 'Most Recent':
+        case 'recent':
           //TODO
           return true;
-        case 'Most Popular':
+        case 'popular':
           return book.rating >= 4;
-        case 'Free Books':
+        case 'free':
           return book.cost === 0;
       }
     }
@@ -35,9 +34,8 @@ function meetFilter(filter) {
   };
 }
 
-// TODO with type?
 function meetCategory(category) {
-  return book => true;
+  return book => (category ? book.categories.includes(category.type) : true);
 }
 
 module.exports = meetQuery;

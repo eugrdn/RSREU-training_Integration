@@ -28,9 +28,8 @@ router
         bookService
           .getAllBooks()
           .then(data => {
-            // search = 'null' ??
             const requiredBooks = data.filter(book =>
-              meetQuery({book, search: null, filter, category})
+              meetQuery({book, search, filter, category})
             );
 
             return res.send(requiredBooks);
@@ -38,14 +37,12 @@ router
           .catch(err => res.send(err));
       })
       .catch(err => res.send(err));
-  })
-  .get('/books/:id', (req, res) => {
-    const id = req.params.id;
-
-    bookService
-      .getBookById(id)
-      .then(data => res.send(data))
-      .catch(err => res.send(err));
   });
+  /**
+   * TODO
+   * [ ] create book
+   * [ ] update book
+   * [ ] delete book
+   */
 
 module.exports = router;
