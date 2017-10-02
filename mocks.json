@@ -1,96 +1,156 @@
 {
   "books": [
     {
-      "id": 1,
       "title": "Jewels of Nizam",
-      "author": "Geeta Devi",
+      "author": {
+        "firstName": "Geeta",
+        "lastName": "Devi"
+      },
       "img": "JewelsOfNizam.jpg",
-      "stars": 5,
-      "labels": "label1"
+      "rating": 5,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 2,
       "title": "Cakes & Bakes",
-      "author": "Sanjeev Kapoor",
+      "author": {
+        "firstName": "Sanjeev",
+        "lastName": "Kapoor"
+      },
       "img": "CakesAndBakes.jpg",
-      "stars": 5,
-      "labels": "label1"
+      "rating": 5,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 3,
       "title": "Jamie\"s Kitchen",
-      "author": "Jamie Oliver",
+      "author": {
+        "firstName": "Jamie",
+        "lastName": "Oliver"
+      },
       "img": "JamiesKitchen.jpg",
-      "stars": 4,
-      "labels": "label1"
+      "rating": 4,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 4,
       "title": "Inexpensive Family Meals",
-      "author": "Simon Holst",
+      "author": {
+        "firstName": "Simon",
+        "lastName": "Holst"
+      },
       "img": "InexpensiveFamilyMeals.jpg",
-      "stars": 3,
-      "labels": "label2"
+      "rating": 3,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 5,
       "title": "Paleo Slow Cooking",
-      "author": "Chrissy Gawer",
+      "author": {
+        "firstName": "Chrissy",
+        "lastName": "Gawer"
+      },
       "img": "PaleoSlowCooking.jpg",
-      "stars": 4,
-      "labels": "label1"
+      "rating": 4,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 6,
       "title": "Cook Like an Italian",
-      "author": "Toble Puttock",
+      "author": {
+        "firstName": "Toble",
+        "lastName": "Puttock"
+      },
       "img": "CookLikeAnItalian.jpg",
-      "stars": 3,
-      "labels": "label1"
+      "rating": 3,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 7,
       "title": "Suneeta Vaswani",
-      "author": "Geeta Devi",
+      "author": {
+        "firstName": "Geeta",
+        "lastName": "Devi"
+      },
       "img": "SuneetaVaswani.jpg",
-      "stars": 5,
-      "labels": "label2"
+      "rating": 5,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 8,
       "title": "Jamie Does",
-      "author": "Jamie Oliver",
+      "author": {
+        "firstName": "Jamie",
+        "lastName": "Oliver"
+      },
       "img": "JamieDoes.jpg",
-      "stars": 3,
-      "labels": "label2"
+      "rating": 3,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 9,
       "title": "Jamie\"s Italy",
-      "author": "Jamie Oliver",
+      "author": {
+        "firstName": "Jamie",
+        "lastName": "Oliver"
+      },
       "img": "JamiesItaly.jpg",
-      "stars": 5,
-      "labels": "label1"
+      "rating": 5,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     },
     {
-      "id": 10,
       "title": "Vegetables Cookbook",
-      "author": "Matthew Biggs",
+      "author": {
+        "firstName": "Matthew",
+        "lastName": "Biggs"
+      },
       "img": "VegetablesCookbook.jpg",
-      "stars": 3,
-      "labels": "label2"
+      "rating": 3,
+      "cost": 100,
+      "keywords": [],
+      "categories": [],
+      "createdAt": 1506943763424,
+      "updatedAt": 1506943763424
     }
   ],
   "filters": [
-    {"id": 1, "title": "All Books", "active": true},
-    {"id": 2, "title": "Most Recent", "active": false},
-    {"id": 3, "title": "Most Popular", "active": false},
-    {"id": 4, "title": "Free Books", "active": false}
+    {"id": 1, "title": "All Books", "type": "all", "active": true},
+    {"id": 2, "title": "Most Recent", "type": "recent", "active": false},
+    {"id": 3, "title": "Most Popular", "type": "popular", "active": false},
+    {"id": 4, "title": "Free Books", "type": "free", "active": false}
   ],
   "categories": [
-    {"id": 1, "title": "Must Read Titles", "color": "#ff517e"},
-    {"id": 2, "title": "Best Of List", "color": "#ffb700"},
-    {"id": 3, "title": "Classic Novels", "color": "#03bedf"},
-    {"id": 4, "title": "Non Fiction", "color": "#847ede"}
+    {"id": 1, "title": "Must Read Titles", "type": "must_read", "color": "#ff517e"},
+    {"id": 2, "title": "Best Of List", "type": "best", "color": "#ffb700"},
+    {"id": 3, "title": "Classic Novels", "type": "classic", "color": "#03bedf"},
+    {"id": 4, "title": "Non Fiction", "type": "non_fiction", "color": "#847ede"}
   ]
 }
