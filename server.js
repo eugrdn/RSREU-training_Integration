@@ -18,7 +18,8 @@ MongoDB.connect(DB_URL)
 
     // body parser
     app.use(bodyParser.urlencoded({ extended: true }));
-
+    app.use(bodyParser.json());
+    
     app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header(
