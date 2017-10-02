@@ -62,12 +62,15 @@ router
         switch (action) {
           case 'create': {
             dbQuery = bookService.createBook(book);
+            break;
           }
           case 'update': {
             dbQuery = bookService.updateBook(id, rating);
+            break;
           }
           case 'delete': {
             dbQuery = bookService.deleteBook(id);
+            break;
           }
         }
 
