@@ -4,8 +4,5 @@ const categoryCol = require('../db/index')
 module.exports = {
   getAllCategories() {
     return categoryCol.find({}).toArray();
-  },
-  getCategoryById(id) {
-    return categoryCol.findOne({id});
   }
 };

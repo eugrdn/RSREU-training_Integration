@@ -6,10 +6,6 @@ const service = {
     return bookCol.find({}).toArray();
   },
 
-  getBookById(_id) {
-    return bookCol.findOne(ObjectID(_id));
-  },
-
   createBook(book) {
     return bookCol.insertOne(book).then(res => res.ops[0], err => err);
   },

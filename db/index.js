@@ -16,11 +16,6 @@ module.exports = {
   },
 
   getCollection(name) {
-    const collection = this.getInstance().collection(name);
-    // TODO don't work
-    if (!collection) {
-      throw Error(`Requested Collection "${name}" not found!`);
-    }
-    return collection;
+    return this.getInstance().collection(name);
   }
 };

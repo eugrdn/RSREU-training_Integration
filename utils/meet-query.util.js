@@ -9,33 +9,35 @@ function meetQuery({book, search, filter, category}) {
 }
 
 function meetSearch(queryString) {
-  return book =>
+  return ({title = '', firstName = '', lastName = ''}) =>
     queryString
-      ? queryString.includes(book.title) || queryString.includes(book.author)
+      ? title.includes(queryString) ||
+        firstName.includes(queryString) ||
+        lastName.includes(queryString)
       : true;
 }
 
+const POPULAR_RATING = 4;
+
 function meetFilter(filter) {
   return book => {
-    if (filter) {
-      switch (filter.type) {
-        case 'all':
-          return true;
-        case 'recent':
-          //TODO
-          return true;
-        case 'popular':
-          return book.rating >= 4;
-        case 'free':
-          return book.cost === 0;
-      }
+    switch (filter) {
+      case 'all':
+        return true;
+      case 'recent':
+        return true;
+      case 'popular':
+        return book.rating >= POPULAR_RATING;
+      case 'free':
+        return book.cost == 0;
+      default:
+        return true;
     }
-    return true;
   };
 }
 
 function meetCategory(category) {
-  return book => (category ? book.categories.includes(category.type) : true);
+  return book => (category ? book.categories.includes(category) : true);
 }
 
 module.exports = meetQuery;

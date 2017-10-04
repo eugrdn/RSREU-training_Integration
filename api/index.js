@@ -4,18 +4,6 @@ const bookService = require('../services/book.service');
 const categoryService = require('../services/category.service');
 const filterService = require('../services/filter.service');
 
-const sendQueryBooks = ({search, filter, category}, response) =>
-  bookService
-    .getAllBooks()
-    .then(data => {
-      const requiredBooks = data.filter(book =>
-        meetQuery({book, search, filter, category})
-      );
-
-      return response.send(requiredBooks);
-    })
-    .catch(err => Promise.reject(err));
-
 router
   .get('/categories', (req, res) => {
     categoryService
@@ -32,13 +20,20 @@ router
   .get('/books', (req, res) => {
     const {search, activeFilter, activeCategory} = req.query;
 
-    Promise.all([
-      filterService.getFilterById(+activeFilter),
-      categoryService.getCategoryById(+activeCategory)
-    ])
-      .then(([filter, category]) =>
-        sendQueryBooks({search, filter, category}, res)
-      )
+    bookService
+      .getAllBooks()
+      .then(data => {
+        const requiredBooks = data.filter(book =>
+          meetQuery({
+            book,
+            search,
+            filter: activeFilter,
+            category: activeCategory
+          })
+        );
+
+        return res.send(requiredBooks);
+      })
       .catch(err => res.send(err));
   })
   .post('/book', (req, res) => {
@@ -46,40 +41,46 @@ router
       search,
       activeFilter,
       activeCategory,
-      id,
+      _id,
       action,
       rating,
       book
     } = req.body;
 
-    Promise.all([
-      filterService.getFilterById(+activeFilter),
-      categoryService.getCategoryById(+activeCategory)
-    ])
-      .then(data => {
-        let dbQuery;
+    let dbQuery;
 
-        switch (action) {
-          case 'create': {
-            dbQuery = bookService.createBook(book);
-            break;
-          }
-          case 'update': {
-            dbQuery = bookService.updateBook(id, rating);
-            break;
-          }
-          case 'delete': {
-            dbQuery = bookService.deleteBook(id);
-            break;
-          }
-        }
+    switch (action) {
+      case 'create': {
+        dbQuery = bookService.createBook(book);
+        break;
+      }
+      case 'update': {
+        dbQuery = bookService.updateBook(_id, rating);
+        break;
+      }
+      case 'delete': {
+        dbQuery = bookService.deleteBook(_id);
+        break;
+      }
+    }
 
-        return Promise.all([data, dbQuery]);
-      })
-      .then(([{category, filter}]) =>
-        sendQueryBooks({search, filter, category}, res)
-      )
-      .catch(err => res.send(err));
+    dbQuery.then(data =>
+      bookService
+        .getAllBooks()
+        .then(data => {
+          const requiredBooks = data.filter(book =>
+            meetQuery({
+              book,
+              search,
+              filter: activeFilter,
+              category: activeCategory
+            })
+          );
+
+          return res.send(requiredBooks);
+        })
+        .catch(err => res.send(err))
+    );
   });
 
 module.exports = router;
