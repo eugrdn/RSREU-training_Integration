@@ -1,27 +1,18 @@
 function meetQuery({book, search, filter, category}) {
   const expectations = [
-    meetSearch(search),
     meetFilter(filter),
+    meetSearch(search),
     meetCategory(category)
   ];
 
   return expectations.filter(f => f(book)).length === expectations.length;
 }
 
-function meetSearch(queryString) {
-  return ({title = '', firstName = '', lastName = ''}) =>
-    queryString
-      ? title.includes(queryString) ||
-        firstName.includes(queryString) ||
-        lastName.includes(queryString)
-      : true;
-}
-
 const POPULAR_RATING = 4;
 
-function meetFilter(filter) {
+function meetFilter(filterType) {
   return book => {
-    switch (filter) {
+    switch (filterType) {
       case 'all':
         return true;
       case 'recent':
@@ -36,8 +27,17 @@ function meetFilter(filter) {
   };
 }
 
-function meetCategory(category) {
-  return book => (category ? book.categories.includes(category) : true);
+function meetSearch(queryString) {
+  return ({title = '', firstName = '', lastName = ''}) =>
+    queryString
+      ? title.includes(queryString) ||
+        firstName.includes(queryString) ||
+        lastName.includes(queryString)
+      : true;
+}
+
+function meetCategory(categoryType) {
+  return book => (categoryType ? book.categories.includes(categoryType) : true);
 }
 
 module.exports = meetQuery;
