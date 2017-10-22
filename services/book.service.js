@@ -16,7 +16,7 @@ const service = {
 
   deleteBook(_id, callback) {
     return bookCol.remove({_id: ObjectID(_id)}, callback);
-  },
+  }
 };
 
 module.exports = service;

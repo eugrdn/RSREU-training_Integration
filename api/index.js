@@ -9,31 +9,29 @@ router
     categoryService.getAllCategories((err, categories) => {
       if (err) {
         console.error(err);
-        return res.send([]);
+        return res.send(err);
       }
 
       return res.send(categories);
     });
   })
-
   .get('/filters', (req, res) => {
     filterService.getAllFilters((err, filters) => {
       if (err) {
         console.error(err);
-        return res.send([]);
+        return res.send(err);
       }
 
       return res.send(filters);
     });
   })
-
   .get('/books', (req, res) => {
     const {search, activeFilter, activeCategory} = req.query;
 
     bookService.getAllBooks((err, books) => {
       if (err) {
         console.error(err);
-        return res.send([]);
+        return res.send(err);
       }
 
       const requiredBooks = books.filter(book =>
@@ -42,7 +40,6 @@ router
       return res.send(requiredBooks);
     });
   })
-
   .post('/book', (req, res) => {
     const action = req.body.action;
     const {search, activeFilter, activeCategory} = req.body;
@@ -50,13 +47,13 @@ router
     const getAllBooksCallback = (err, cursor) => {
       if (err) {
         console.error(err);
-        return res.send([]);
+        return res.send(err);
       }
 
       bookService.getAllBooks((err, books) => {
         if (err) {
           console.error(err);
-          return res.send([]);
+          return res.send(err);
         }
 
         const requiredBooks = books.filter(book =>
