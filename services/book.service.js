@@ -2,21 +2,21 @@ const ObjectID = require('mongodb').ObjectID;
 const bookCol = require('../db/index').getCollection('books');
 
 const service = {
-  getAllBooks() {
-    return bookCol.find({}).toArray();
+  getAllBooks(callback) {
+    return bookCol.find({}).toArray(callback);
   },
 
-  createBook(book) {
-    return bookCol.insertOne(book).then(res => res.ops[0], err => err);
+  createBook(book, callback) {
+    return bookCol.insertOne(book, callback);
   },
 
-  updateBook(_id, rating) {
-    return bookCol.update({_id: ObjectID(_id)}, {$set: {rating}});
+  updateBookRating(_id, rating, callback) {
+    return bookCol.update({_id: ObjectID(_id)}, {$set: {rating}}, callback);
   },
 
-  deleteBook(_id) {
-    return bookCol.remove({_id: ObjectID(_id)});
-  }
+  deleteBook(_id, callback) {
+    return bookCol.remove({_id: ObjectID(_id)}, callback);
+  },
 };
 
 module.exports = service;
