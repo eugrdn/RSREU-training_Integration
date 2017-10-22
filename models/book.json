@@ -1,24 +1,142 @@
-{
-  "items": [
-    {
-        "id": "1",
-        "name": "Book1",
-        "description": "description"
+[
+  {
+    "title": "Jewels of Nizam",
+    "author": {
+      "firstName": "Geeta",
+      "lastName": "Devi"
     },
-    {
-        "id": "2",
-        "name": "Book3",
-        "description": "description"
+    "img": "JewelsOfNizam.jpg",
+    "rating": 5,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Cakes & Bakes",
+    "author": {
+      "firstName": "Sanjeev",
+      "lastName": "Kapoor"
     },
-    {
-        "id": "3",
-        "name": "Book4",
-        "description": "description"
+    "img": "CakesAndBakes.jpg",
+    "rating": 5,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Jamie\"s Kitchen",
+    "author": {
+      "firstName": "Jamie",
+      "lastName": "Oliver"
     },
-    {
-        "id": "4",
-        "name": "Book5",
-        "description": "description"
-    }
-    ]
-}
+    "img": "JamiesKitchen.jpg",
+    "rating": 4,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Inexpensive Family Meals",
+    "author": {
+      "firstName": "Simon",
+      "lastName": "Holst"
+    },
+    "img": "InexpensiveFamilyMeals.jpg",
+    "rating": 3,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Paleo Slow Cooking",
+    "author": {
+      "firstName": "Chrissy",
+      "lastName": "Gawer"
+    },
+    "img": "PaleoSlowCooking.jpg",
+    "rating": 4,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Cook Like an Italian",
+    "author": {
+      "firstName": "Toble",
+      "lastName": "Puttock"
+    },
+    "img": "CookLikeAnItalian.jpg",
+    "rating": 3,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Suneeta Vaswani",
+    "author": {
+      "firstName": "Geeta",
+      "lastName": "Devi"
+    },
+    "img": "SuneetaVaswani.jpg",
+    "rating": 5,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Jamie Does",
+    "author": {
+      "firstName": "Jamie",
+      "lastName": "Oliver"
+    },
+    "img": "JamieDoes.jpg",
+    "rating": 3,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Jamie\"s Italy",
+    "author": {
+      "firstName": "Jamie",
+      "lastName": "Oliver"
+    },
+    "img": "JamiesItaly.jpg",
+    "rating": 5,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  },
+  {
+    "title": "Vegetables Cookbook",
+    "author": {
+      "firstName": "Matthew",
+      "lastName": "Biggs"
+    },
+    "img": "VegetablesCookbook.jpg",
+    "rating": 3,
+    "cost": 100,
+    "keywords": [],
+    "categories": [],
+    "createdAt": 1506943763424,
+    "updatedAt": 1506943763424
+  }
+]

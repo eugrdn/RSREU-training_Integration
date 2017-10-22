@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const books = require('../models/book.json');
+const categories = require('../models/categories.json');
+const filters = require('../models/filters.json');
 
-router.get('/books', function(request, response) {
-  response.send(books.items);
-});
-
-router.get('/books/:id', function(request, response) {
-  var id = request.params.id,
-    book = books.items.find(function(book) {
-      return book.id === id;
-    });
-  response.send(book);
-});
+router
+  .get('/categories', (req, res) => {
+    res.send(categories);
+  })
+  .get('/filters', (req, res) => {
+    res.send(filters);
+  })
+  .get('/books', (req, res) => {
+    res.send(books);
+  });
 
 module.exports = router;
