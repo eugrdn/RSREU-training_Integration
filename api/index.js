@@ -22,15 +22,9 @@ router
 
     bookService
       .getAllBooks()
-      .then(data => {
-        const requiredBooks = data.filter(book =>
-          meetQuery({
-            book,
-            search,
-            filter: activeFilter,
-            category: activeCategory
-          })
-        );
+      .then(books => {
+        const requiredBooks = books.filter(book =>
+          meetQuery(book, search, activeFilter, activeCategory));
 
         return res.send(requiredBooks);
       })
@@ -44,7 +38,7 @@ router
       _id,
       action,
       rating,
-      book
+      book,
     } = req.body;
 
     let dbQuery;
@@ -69,17 +63,11 @@ router
         .getAllBooks()
         .then(data => {
           const requiredBooks = data.filter(book =>
-            meetQuery({
-              book,
-              search,
-              filter: activeFilter,
-              category: activeCategory
-            })
-          );
+            meetQuery(book, search, activeFilter, activeCategory));
 
           return res.send(requiredBooks);
         })
-        .catch(err => res.send(err))
+        .catch(err => res.send(err)),
     );
   });
 
