@@ -1,8 +1,8 @@
-function meetQuery({book, search, filter, category}) {
+function meetQuery(book, search, filter, category) {
   const expectations = [
     meetFilter(filter),
     meetSearch(search),
-    meetCategory(category)
+    meetCategory(category),
   ];
 
   return expectations.filter(f => f(book)).length === expectations.length;
@@ -10,13 +10,25 @@ function meetQuery({book, search, filter, category}) {
 
 const POPULAR_RATING = 4;
 
+const inLastWeek = date => {
+  if (date) {
+    const currentDate = new Date(date);
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+    return currentDate >= oneWeekAgo;
+  }
+
+  return false;
+};
+
 function meetFilter(filterType) {
   return book => {
     switch (filterType) {
       case 'all':
         return true;
       case 'recent':
-        return true;
+        return inLastWeek(book.updatedAt) || inLastWeek(book.createdAt);
       case 'popular':
         return book.rating >= POPULAR_RATING;
       case 'free':
