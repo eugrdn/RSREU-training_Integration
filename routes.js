@@ -1,12 +1,12 @@
-var fs = require('fs');
+const fs = require('fs');
 // require express
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 // require api
-var api = require('./api');
+const api = require('./api');
 
 // create our router object
-var router = express.Router();
+const router = express.Router();
 
 // export our router
 module.exports = router;

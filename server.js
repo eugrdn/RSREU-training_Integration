@@ -9,7 +9,7 @@ const port = process.env.PORT || 8080;
 app.engine('html', engines.mustache);
 app.set('view engine', 'html');
 app.use(
-  express.static(path.resolve(__dirname, 'node_modules/library-ui/build')),
+  express.static(path.resolve(__dirname, 'node_modules/library-ui/build'))
 );
 
 // body parser
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
+    'Origin, X-Requested-With, Content-Type, Accept'
   );
   next();
 });
