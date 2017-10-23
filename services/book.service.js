@@ -7,11 +7,20 @@ const service = {
   },
 
   createBook(book, callback) {
-    return bookCol.insertOne(book, callback);
+    const bookData = {
+      ...book,
+      createdAt: book.createdAt || Date.now(),
+      updatedAt: book.updatedAt || Date.now()
+    };
+
+    return bookCol.insertOne(bookData, callback);
   },
 
-  updateBookRating(_id, rating, callback) {
-    return bookCol.update({_id: ObjectID(_id)}, {$set: {rating}}, callback);
+  updateBook(book, callback) {
+    const _id = ObjectID(book._id);
+    const newBookData = {...book, _id};
+
+    return bookCol.update({_id}, newBookData, callback);
   },
 
   deleteBook(_id, callback) {

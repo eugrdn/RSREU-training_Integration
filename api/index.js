@@ -44,7 +44,7 @@ router
     const action = req.body.action;
     const {search, activeFilter, activeCategory} = req.body;
 
-    const getAllBooksCallback = (err, cursor) => {
+    const getAllBooksCallback = (err, cursor) => {      
       if (err) {
         console.error(err);
         return res.send(err);
@@ -69,8 +69,8 @@ router
         return bookService.createBook(book, getAllBooksCallback);
       }
       case 'update': {
-        const {_id, rating} = req.body;
-        return bookService.updateBookRating(_id, rating, getAllBooksCallback);
+        const {book} = req.body;
+        return bookService.updateBook(book, getAllBooksCallback);
       }
       case 'delete': {
         const {_id} = req.body;
